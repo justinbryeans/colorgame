@@ -4,6 +4,7 @@ var squares = document.querySelectorAll(".square");
 var pickedColor = pickColor();
 var colorDisplay = document.querySelector("#colorDisplay");
 var messageDisplay = document.querySelector("#message");
+var h1 = document.querySelector("h1");
 
 for(i = 0; i < squares.length; i++) {
 	//Add initial colors to squares
@@ -16,6 +17,7 @@ for(i = 0; i < squares.length; i++) {
 		if(clickedColor === pickedColor) {
 			messageDisplay.textContent = "Correct";
 			changeColors(clickedColor);
+			h1.style.backgroundColor = clickedColor;
 		} else {
 			this.style.background = "#232323";
 			messageDisplay.textContent = "Try Again";
