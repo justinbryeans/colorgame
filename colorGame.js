@@ -6,6 +6,18 @@ var colorDisplay = document.querySelector("#colorDisplay");
 var messageDisplay = document.querySelector("#message");
 var h1 = document.querySelector("h1");
 var resetButton = document.querySelector("#reset");
+var easyBtn = document.querySelector("#easy");
+var hardBtn = document.querySelector("#hard")
+
+easyBtn.addEventListener("click", function() {
+	easyBtn.classList.add("selected");
+	hardBtn.classList.remove("selected");
+}) 
+
+hardBtn.addEventListener("click", function() {
+	hardBtn.classList.add("selected");
+	easyBtn.classList.remove("selected");
+})
 
 resetButton.addEventListener("click", function() {
 	//Generate new colors
@@ -18,6 +30,7 @@ resetButton.addEventListener("click", function() {
 	for(i = 0; i < squares.length; i++) {
 		squares[i].style.backgroundColor = colors[i];
 	}
+	h1.style.background = "#232323";
 })
 
 for(i = 0; i < squares.length; i++) {
