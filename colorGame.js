@@ -53,7 +53,7 @@ resetButton.addEventListener("click", function() {
 	for(i = 0; i < squares.length; i++) {
 		squares[i].style.backgroundColor = colors[i];
 	}
-	h1.style.background = "#232323";
+	h1.style.background = "orange";
 })
 
 for(i = 0; i < squares.length; i++) {
