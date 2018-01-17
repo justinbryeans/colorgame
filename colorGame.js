@@ -1,11 +1,4 @@
-var colors = [
-	"rgb(255, 0, 0)",
-	"rgb(255, 255, 0)",
-	"rgb(0, 255, 0)",
-	"rgb(0, 255, 255)",
-	"rgb(0, 0, 255)",
-	"rgb(255, 0, 255)"
-]
+var colors = generateRandomColors(6);
 
 var squares = document.querySelectorAll(".square");
 var pickedColor = pickColor();
@@ -41,6 +34,28 @@ function changeColors(color) {
 function pickColor() {
 	var random = Math.floor(Math.random() * colors.length);
 	return colors[random];
+}
+
+function generateRandomColors(num) {
+	//Create an array
+	var arr = [];
+	//Add num random colors to array
+	for(i = 0; i < num; i++) {
+		//Get random color and push into array
+		arr.push(randomColor());
+	}
+	//Return the array
+	return arr;
+}
+
+function randomColor() {
+	//Pick a red, green and blue from 0 - 255
+	var r = Math.floor(Math.random() * 256);
+	var g = Math.floor(Math.random() * 256);
+	var b = Math.floor(Math.random() * 256);
+
+	//Return string of random rgb color
+	return "rgb(" + r + "," + g + "," + b + ")";
 }
 
 //Updates the H1 span to display chosen color properties
