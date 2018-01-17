@@ -62,13 +62,10 @@ button {
 	letter-spacing: 1.2px;
 	font-size: inherit;
 	transition: all .3s;
+	outline: none;
 }
 
 button:hover {
 	color: white;
 	background: orange;
-}
-
-button:focus {
-	display: none;
 }
