@@ -55,7 +55,7 @@ function randomColor() {
 	var b = Math.floor(Math.random() * 256);
 
 	//Return string of random rgb color
-	return "rgb(" + r + "," + g + "," + b + ")";
+	return "rgb(" + r + ", " + g + ", " + b + ")";
 }
 
 //Updates the H1 span to display chosen color properties
