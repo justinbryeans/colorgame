@@ -5,6 +5,20 @@ var pickedColor = pickColor();
 var colorDisplay = document.querySelector("#colorDisplay");
 var messageDisplay = document.querySelector("#message");
 var h1 = document.querySelector("h1");
+var resetButton = document.querySelector("#reset");
+
+resetButton.addEventListener("click", function() {
+	//Generate new colors
+	colors = generateRandomColors(6);
+	//Pick a new random color from array
+	pickedColor = pickColor();
+	//Change colorDisplay to match picked Color
+	colorDisplay.textContent = pickedColor;
+	//Change colors of squares
+	for(i = 0; i < squares.length; i++) {
+		squares[i].style.backgroundColor = colors[i];
+	}
+})
 
 for(i = 0; i < squares.length; i++) {
 	//Add initial colors to squares
@@ -62,3 +76,5 @@ function randomColor() {
 
 //Updates the H1 span to display chosen color properties
 colorDisplay.textContent = pickedColor;
+
+
