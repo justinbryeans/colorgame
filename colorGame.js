@@ -1,5 +1,5 @@
-var colors = generateRandomColors(6);
-
+var numSquares = 6;
+var colors = generateRandomColors(numSquares);
 var squares = document.querySelectorAll(".square");
 var pickedColor = pickColor();
 var colorDisplay = document.querySelector("#colorDisplay");
@@ -9,19 +9,42 @@ var resetButton = document.querySelector("#reset");
 var easyBtn = document.querySelector("#easy");
 var hardBtn = document.querySelector("#hard")
 
+//Easy and Hard game choice option buttons
 easyBtn.addEventListener("click", function() {
 	easyBtn.classList.add("selected");
 	hardBtn.classList.remove("selected");
+	numSquares = 3;
+	//Choose three new colors for easy mode, as easy mode only has three squares
+	colors = generateRandomColors(numSquares);
+	pickedColor = pickColor();
+	colorDisplay.textContent = pickedColor;
+	for(i = 0; i < squares.length; i++) {
+		if(colors[i]) {
+			squares[i].style.backgroundColor = colors[i];
+		//Set bottom three squares display to none
+		} else {
+			squares[i].style.display = "none";
+		}
+	}
 }) 
 
 hardBtn.addEventListener("click", function() {
 	hardBtn.classList.add("selected");
 	easyBtn.classList.remove("selected");
+	numSquares = 6;
+	//Choose six new colors for hard mode, as hard mode has six squares
+	colors = generateRandomColors(numSquares);
+	pickedColor = pickColor();
+	colorDisplay.textContent = pickedColor;
+	for(i = 0; i < squares.length; i++) {
+		squares[i].style.backgroundColor = colors[i];
+		squares[i].style.display = "block";
+	}
 })
 
 resetButton.addEventListener("click", function() {
 	//Generate new colors
-	colors = generateRandomColors(6);
+	colors = generateRandomColors(numSquares);
 	//Pick a new random color from array
 	pickedColor = pickColor();
 	//Change colorDisplay to match picked Color
