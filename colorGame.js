@@ -1,66 +1,23 @@
 var numSquares = 6;
-var colors = generateRandomColors(numSquares);
+var colors = [];
+var pickedColor;
 var squares = document.querySelectorAll(".square");
-var pickedColor = pickColor();
 var colorDisplay = document.querySelector("#colorDisplay");
 var messageDisplay = document.querySelector("#message");
 var h1 = document.querySelector("h1");
 var resetButton = document.querySelector("#reset");
-var easyBtn = document.querySelector("#easy");
-var hardBtn = document.querySelector("#hard")
+var modeButtons = document.querySelectorAll(".mode");
 
-//Easy and Hard game choice option buttons
-easyBtn.addEventListener("click", function() {
-	easyBtn.classList.add("selected");
-	hardBtn.classList.remove("selected");
-	numSquares = 3;
-	//Choose three new colors for easy mode, as easy mode only has three squares
-	colors = generateRandomColors(numSquares);
-	pickedColor = pickColor();
-	colorDisplay.textContent = pickedColor;
+init();
+//Initial function
+function init() {
+	setUpModeButtons();
+	setUpSquares();
+	reset();
+}
+
+function setUpSquares() {
 	for(i = 0; i < squares.length; i++) {
-		if(colors[i]) {
-			squares[i].style.backgroundColor = colors[i];
-		//Set bottom three squares display to none
-		} else {
-			squares[i].style.display = "none";
-		}
-	}
-}) 
-
-hardBtn.addEventListener("click", function() {
-	hardBtn.classList.add("selected");
-	easyBtn.classList.remove("selected");
-	numSquares = 6;
-	//Choose six new colors for hard mode, as hard mode has six squares
-	colors = generateRandomColors(numSquares);
-	pickedColor = pickColor();
-	colorDisplay.textContent = pickedColor;
-	for(i = 0; i < squares.length; i++) {
-		squares[i].style.backgroundColor = colors[i];
-		squares[i].style.display = "block";
-	}
-})
-
-resetButton.addEventListener("click", function() {
-	//Generate new colors
-	colors = generateRandomColors(numSquares);
-	//Pick a new random color from array
-	pickedColor = pickColor();
-	//Change colorDisplay to match picked Color
-	colorDisplay.textContent = pickedColor;
-	this.textContent = "New Colors";
-	messageDisplay.textContent = "";
-	//Change colors of squares
-	for(i = 0; i < squares.length; i++) {
-		squares[i].style.backgroundColor = colors[i];
-	}
-	h1.style.background = "orange";
-})
-
-for(i = 0; i < squares.length; i++) {
-	//Add initial colors to squares
-	squares[i].style.backgroundColor = colors[i];
 	//Add click listeners to squares
 	squares[i].addEventListener("click", function() {
 		//Get color of clicked square
@@ -76,7 +33,47 @@ for(i = 0; i < squares.length; i++) {
 			messageDisplay.textContent = "Try Again";
 		}
 	})
+  }
 }
+
+function setUpModeButtons() {
+	//Easy and Hard game choice option buttons
+	for(i = 0; i < modeButtons.length; i++) {
+	modeButtons[i].addEventListener("click", function() {
+		modeButtons[0].classList.remove("selected");
+		modeButtons[1].classList.remove("selected");
+		this.classList.add("selected");
+		this.textContent === "Easy" ? numSquares = 3: numSquares = 6;
+		reset();
+	})
+  }
+}
+
+
+function reset() {
+	//Generate new colors
+	colors = generateRandomColors(numSquares);
+	//Pick a new random color from array
+	pickedColor = pickColor();
+	//Change colorDisplay to match picked Color
+	colorDisplay.textContent = pickedColor;
+	resetButton.textContent = "New Colors";
+	messageDisplay.textContent = "";
+	//Change colors of squares
+	for(i = 0; i < squares.length; i++) {
+		if(colors[i]) {
+			squares[i].style.display = "block";
+			squares[i].style.backgroundColor = colors[i];
+		} else {
+			squares[i].style.display = "none";
+		}
+	}
+	h1.style.background = "orange";
+}
+
+resetButton.addEventListener("click", function() {
+	reset();
+})
 
 function changeColors(color) {
 	//Loop through all squares
